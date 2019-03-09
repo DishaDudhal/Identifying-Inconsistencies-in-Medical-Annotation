@@ -52,3 +52,62 @@ Features provided in the Web App:
         a particular word in the provided dataset or a particular annotation tag
 	4. Statistical Insights are also provided which displays the proportion of inconsistency 
         in the data or contribution of multi-word entities vs single word entities in the inconsistencies
+Front Page of the Web App
+---
+![img1](img1.png)
+
+On Uploading a .tsv file
+---
+Uploading will take time as in this step preprocessing and clustering is done!
+
+![img2](img2.png)
+
+Home Page of the Web App
+---
+![img3](img3.png)
+
+Search Page
+---
+![img4](img4.png)
+
+On searching a word
+---
+Here, sentences containing blood are displayed
+
+![img5](img5.png)
+
+On searching a tag
+---
+Here, sentences with problematic temrs are displayed
+
+![img6](img6.png)
+
+On searching a part of a word
+---
+Even on searching a part of a word, sentences are displayed
+
+![img7](img7.png)
+
+The Clusters with Unique Annotation Patterns
+---
+![img8](img8.png)
+
+On clicking a pattern sentences containing that annotation pattern are displayed
+---
+![img9](img9.png)
+
+Inconsistency vs Consistency
+---
+![img10](img10.png)
+
+Inconsistency in Single Word Entities vs Multi Word Entities
+---
+![img11](img11.png)
+
+Few Words to Visitors
+---
+
+This Application is in its development phase and its obvious to get erroneous cluster patterns in some cases. A lot of improvement is needed.
+Pull requests for any such changes are accepted. Feel free to fork this project and make your own changes too.
+
+Thank you for Visiting!

@@ -1,0 +1,160 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="utf-8">
+	<meta http-equiv="X-UA-Compitable" content="IE=edge">
+	<meta name="viewport" content="width=device-width, initial-scale=1">
+	<link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+	<link href="https://fonts.googleapis.com/css?family=Bellefair|Lobster|Roboto+Slab|Timmana" rel="stylesheet">
+	<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+	<script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+	<title>Inconsistencies</title>
+	<link rel="stylesheet" href="css/bootstrap.min.css">
+	<link rel="stylesheet"  href={% static "CSS/style.css" %}>
+	<link rel="shortcut icon" type="image/png" href={% static "Images/FavIcon.png" %}>
+	<link rel='stylesheet' href='https://use.fontawesome.com/releases/v5.7.0/css/all.css' integrity='sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ' crossorigin='anonymous'>
+</head>
+<body>
+	 
+	<!--
+	<br>
+	<center>
+		{% for key, val in figures.items %}
+		<div style="width :100 %;height: auto;border:1px solid #000;text-align: center;">
+			{% for item in val %}
+			{{item}}, 
+			{% endfor %}
+		</div>
+		<div style="font-family: Roberto;">{{key}}</div>
+		<br>
+		{% endfor %}
+		
+	</center>
+	<br><br>
+	<center>
+		<img src={% static 'Images/bar.png' %} alt = "hello" height="500px" width="500px" >
+		<br><br>
+		<img src={% static 'Images/pie.png' %} alt = "pie chart" height="500px">
+	</center>-->
+	<div class="header">
+  		<a href="#" class="logo">Inconsistencies in Medical Annotations</a>
+  		<div class="header-right">
+    		<a data-toggle="modal" data-target="#myModal" href="#">Inconsistency Stats</a>
+    		<a href="{% url "back" %}"><i class="fas fa-home" style="font-size:24px" ></i>Go Back</a>
+  		</div>
+	</div> 
+
+<div class="main">
+	<div class="container-fluid">
+		{% with 0 as count %}
+		{% for key in sorting %}
+			<div class="col-xs-4" style="display:inline;">
+				<div class="panel panel-default" style="margin-top:15px">
+					<div class="panel-heading panel-heading-custom">
+						{% with clusters|get_item:key as val %}
+						<strong><h4>{{val.keys|getName}}</h4></strong>
+						{% endwith %}
+					</div>
+					<div class="panel-body">
+						<div class="container-fluid">
+							<div class="col-xs-12 AnnotLeft">
+								{% with clusters|get_item:key as val %}
+									{% with 0 as innerCount %}
+									{% for innerKey, innerVal in val.items %}
+										{% with 0 as innCount %}
+										{% for Item in innerVal %}
+										<p><a data-toggle="modal" data-target={% sixAppend "#" count "-" innerKey "-" innCount %} style="color:black;">{{Item.0}}</a>
+											          				&nbsp;&nbsp;&nbsp;&nbsp;<input type="radio" name={% fiveAppend count "-" innerKey "-" innCount%}  value="correct">correct
+											          			&nbsp;&nbsp;<input type="radio" name={% fiveAppend count "-" innerKey "-" innCount%}   value="wrong">wrong
+											          			</p>
+
+											<div class="modal fade" id={% fiveAppend count "-" innerKey "-" innCount%} role="dialog">
+											    <div class="modal-dialog modal-lg" style="width:60%">
+											    
+											      <!-- Modal content-->
+											      <div class="modal-content" >
+											        <div class="modal-header" style="background-color: green;color:white">
+											          <button type="button" class="close" data-dismiss="modal">&times;</button>
+											          <h4 class="modal-title">{{ Item.0 }}</h4>
+
+											        </div>
+											        <div class="modal-body">
+											        	<h3>Sentences</h3><br>
+											          	{% for S in Item.1 %}
+											          		{% with sentences|index:S as mySent %}
+											          			<strong><p>-> {{mySent.1}}</p> </strong>
+											          			
+											          		{% endwith %}
+											          	{% endfor %}
+											        </div>
+											        <div class="modal-footer">
+	        				<button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      						</div>
+											      </div>
+											      
+											    </div>
+											  </div>
+											  {% increment innCount %}
+										{% endfor %}
+											{% endwith %}
+										{% increment1 innerCount %}
+									{% endfor %}
+									{% endwith %}
+								{% endwith %}
+							</div>
+						</div>
+					</div>
+				</div>
+			</div>
+			{% increment count %}
+		{% endfor %}
+		{% endwith %}
+	</div>
+</div>
+<div id="myModal" class="modal fade" role="dialog">
+	  <div class="modal-dialog modal-lg" style="width:80%">
+	    
+	    <div class="modal-content">
+	      <div class="modal-header" style="background-color: #e05038">
+	        <button type="button" class="close" style="color:white" data-dismiss="modal">&times;</button>
+	        <h2 class="modal-title" style="color:White" >Inconsistency Statistics</h2>
+	      </div>
+	      <div class="modal-body">
+	        <div class="container-fluid bg-1 text-center">
+			  <h2>Inconsistency Score in the Supplied Corpus</h2>
+			  <center><img class="img-responsive"src={% static 'Images/pie1.png' %} alt="Bird"></center>
+			  <h4>Statistical Insight: About {{Vals.0}}% of Annotations are Inconsistent!</h4>
+			</div>
+			<div class="container-fluid bg-2 text-center">
+			  <h2> Inconsistency in Single Word Entities vs MWEs  </h2>
+			  <div class="col-xs-6" style="margin-bottom:15px">
+			  		<img class="img-responsive" src={% static 'Images/pie2.png' %} height="350px"  alt="Bird">
+			  </div>
+			  <div class="col-xs-6" style="margin-bottom:15px">
+			  		<img class="img-responsive" src={% static 'Images/pie3.png' %} height="350px" alt="Bird">
+			  </div>
+			  {% if Vals.4 > Vals.5 %}
+			  <h4><p>Statistical Insight: Single Word Entities are more prone to Inconsistencies as compared to MWEs!</p></h4>
+			  {% endif %}
+			  {% if Vals.4 < Vals.5 %}
+			  <h4><p>Statistical Insight: Multi-Word Entities are more prone to Inconsistencies as compared to sinlge word Entities!</p></h4>
+			  {% endif %}
+			  {% if Vals.4 == Vals.5 %}
+			  <h4><p>Statistical Insight: Single Word Entities are equaly prone to Inconsistencies as compared to MWEs!</p></h4>
+			  {% endif %}
+			</div>
+			<!--
+			<div class="container-fluid bg-3 text-center">
+			  <h2>Major Contributors in Inconsistency</h2>
+			  <center><img class="img-responsive"src={% static 'Images/pie4.png' %} alt="Bird"></center>
+			</div>-->
+	      </div>
+	      <div class="modal-footer">
+	        <button type="button" class="btn btn-danger" data-dismiss="modal">Close</button>
+	      </div>
+	    </div>
+	</div>
+</div>
+</body>
+</html>

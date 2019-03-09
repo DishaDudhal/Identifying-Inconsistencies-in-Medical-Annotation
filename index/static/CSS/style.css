@@ -1,0 +1,122 @@
+.main {
+  margin-top: 100px; /* Add a top margin to avoid content overlay */
+}
+body{
+	background-color: white;
+}
+.header {
+  z-index: 1;
+  overflow: hidden;
+  background-color: rgb(8,0,0);
+  opacity: 0.9;
+  padding: 20px 10px;
+  top:0;
+  width:100%;
+  position: fixed;
+}
+
+/* Style the header links */
+.header a {
+  float: left;
+  color: white;
+  text-align: center;
+  padding: 12px;
+  text-decoration: none;
+  font-size: 18px;
+  line-height: 25px;
+  border-radius: 4px;
+}
+
+/* Style the logo link (notice that we set the same value of line-height and font-size to prevent the header to increase when the font gets bigger */
+.header a.logo {
+  font-size: 25px;
+  font-weight: bold;
+}
+
+/* Change the background color on mouse-over */
+.header a:hover {
+  color: rgb(255,215,0);
+}
+
+.header-right a:hover {
+	background-color: #383838;
+  color: rgb(255,215,0);
+}
+
+/* Style the active/current link*/
+.header a.active {
+  background-color: dodgerblue;
+  color: white;
+}
+
+/* Float the link section to the right */
+.header-right {
+  float: right;
+}
+
+/* Add media queries for responsiveness - when the screen is 500px wide or less, stack the links on top of each other */
+@media screen and (max-width: 500 px) {
+  .header a {
+    float: none;
+    display: block;
+    text-align: left;
+  }
+  .header-right {
+    float: none;
+  }
+}
+
+hr{
+	border-style: inset;
+	border-width: 0.5 px;
+}
+
+.AnnotLeft{
+	padding:10px;
+	border-radius: 4px;
+	background-color: white;
+	height: 150px;
+	overflow: auto;
+}
+
+.SentenceRight{
+	border: rgb(169,169,169) 0.5px solid;
+	border-radius: 4px;
+	background-color: white;
+}
+
+.panel-default > .panel-heading-custom {
+background-color: #3fb0ac;
+color: White;
+}
+
+.panel-body{
+	background-color: #e3e3e3;
+}
+
+.bg-1 {
+    background-color: #3fb0ac; /* Green */
+    color: #ffffff;
+  }
+.bg-2 {
+    background-color: #89bdd3; /* Green */
+    color: #ffffff;
+  }
+
+.bg-3 {
+    background-color: #98dafc; /* Green */
+    color: #ffffff;
+  }
+
+.myDiv{
+	
+}
+
+a {
+	cursor: pointer;
+}
+
+.jumbotron{
+  width:60%;
+  height: 460%;
+}

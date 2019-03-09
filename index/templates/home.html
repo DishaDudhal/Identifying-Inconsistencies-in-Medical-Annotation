@@ -1,0 +1,91 @@
+{% load staticfiles %}
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="utf-8">
+  <meta http-equiv="X-UA-Compitable" content="IE=edge">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/css/bootstrap.min.css">
+  <link href="https://fonts.googleapis.com/css?family=Bellefair|Lobster|Roboto+Slab|Timmana" rel="stylesheet">
+  <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.3.1/jquery.min.js"></script>
+  <script src="https://maxcdn.bootstrapcdn.com/bootstrap/3.3.7/js/bootstrap.min.js"></script>
+  <title>Inconsistencies</title>
+  <link rel="stylesheet" href="css/bootstrap.min.css">
+  <link rel="stylesheet"  href={% static "CSS/style.css" %}>
+  <link rel="shortcut icon" type="image/png" href={% static "Images/FavIcon.png" %}>
+</head>
+<script>
+function move() {
+  var elem = document.getElementById("myBar");   
+  var width = 1;
+  var id = setInterval(frame, 10);
+  function frame() {
+    if (width >= 100) {
+      clearInterval(id);
+    } else {
+      width+=0.001; 
+      elem.style.width = width + '%'; 
+      elem.innerHTML = width * 1  + '%';
+    }
+  }
+}
+</script>
+
+<style>
+
+<!--.tfile {width: 9.5%}-->
+.image-upload > input
+{
+    display: none;
+}
+img {height:10%;
+	width:10%;}
+	
+h3 {text-align:center}
+
+.tp {
+  padding-left: 500px;
+}
+</style>
+<body>
+<div class="header">
+      <a href="#" class="logo">Inconsistencies in Medical Annotations</a>
+  </div> 
+<header>
+<div class="main">
+  <div class="container-fluid">
+    <center>
+        <div class="jumbotron" style="height:50">	
+        	<div class="container">
+          <h3>Upload the <b>.tsv</b> file here</h3>
+          <form action="{% url "upload_csv" %}" method="POST" enctype="multipart/form-data" class="form-horizontal"> 
+        {% csrf_token %}
+        <div class="form-group">
+            <label for="name" class="col-md-3 col-sm-3 col-xs-12 control-label">File: </label>
+            <div class="col-md-8">
+                <input style="padding:0" type="file" name="csv_file" id="csv_file" required="True" class="form-control">
+            </div>                    
+        </div>
+        <div class="form-group">                    
+            <div class="col-md-3 col-sm-3 col-xs-12 col-md-offset-3" style="margin-bottom:10px;">
+                 <button onclick="move()" class="btn btn-primary"> <span class="glyphicon glyphicon-upload" style="margin-right:5px;"></span>Upload </button>
+            </div> 
+        </div>
+        </form>
+        	<div class="container"> 
+        		<div class="progress">
+            <div class="progress-bar progress-bar-striped active" role="progressbar" aria-valuenow="0" aria-valuemin="0" aria-valuemax="100" style="width:0%" id="myBar">
+              0%
+            </div>
+          </div>
+        </div>
+          </div>
+        </div>
+</center>
+</div>
+</div>
+</header>
+  
+ 
+</body>
+</html>

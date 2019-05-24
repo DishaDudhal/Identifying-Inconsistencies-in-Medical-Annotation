@@ -53,15 +53,15 @@ def ignore_annotation (ignore, word, annotation):
 # In[4]:
 
 
-def inconsistency(file_name):
-    with open (file_name + '.tsv') as tsvfile:
+def inconsistency(file_name):                   # This function is used to obtain a tsv file containing sentence id , sentence , and words annotated in that sentence.
+    with open (file_name + '.tsv') as tsvfile:  #Along with its annotation as was provided by the members or ezDI.
 
         reader = csv.reader(tsvfile, delimiter = "\t")
         Coun=0
         for row in reader:
             id = row[0]
             print(id)
-            if row[2: ] != ['']:
+            if row[2: ] != ['']:   #seprate sentence id and sentence from the annotated data
                 text = list(map(lambda ele: ele.split("$"), row[2:]))
                 for i in text:
                     words = i[0: :2]

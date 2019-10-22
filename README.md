@@ -4,7 +4,7 @@ Inconsistency in Medical Annotations
 Project Source Code can be downloaded from the github repository ykaran86/SIH19_ezDI
 ---
 
-Author
+Authors
 ---
 
 1) Yogesh Karan

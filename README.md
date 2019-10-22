@@ -7,9 +7,16 @@ Project Source Code can be downloaded from the github repository ykaran86/SIH19_
 Author
 ---
 
-Yogesh Karan
-
+1) Yogesh Karan
 email:-ykaran86@gmail.com
+2) Disha Dudhal
+email:- dishadudhal@gmail.com
+3) Devasish Mahato
+email:-t7.devasishmahato@gmail.com
+4) Dhanashree Revagade:-
+email:-dhanashree.revagade@gmail.com
+5) Shivam Dev Singh
+6) Aravind Unnikrishnan
 
 Supervisor
 ---
